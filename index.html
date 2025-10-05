@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск фильмов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        form {
+            display: inline-block;
+            margin: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>Поиск фильмов по имени актера</h1>
+<form onsubmit="event.preventDefault(); searchFilms();">
+    <input type="text" id="actorInput" placeholder="Имя актера" required />
+    <button type="submit">Искать</button>
+</form>
+
+<p id="result"></p>
+
+<script>
+    async function searchFilms() {
+        const actorName = document.getElementById('actorInput').value.trim();
+        try {
+            const response = await fetch(`/search/${encodeURIComponent(actorName)}`);
+            const data = await response.json();
+            document.getElementById('result').innerText = data.message || '';
+        } catch (err) {
+            console.error(err);
+            document.getElementById('result').innerText = 'Ошибка при поиске';
+        }
+    }
+</script>
+</body>
+</html>
