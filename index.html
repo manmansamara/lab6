@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Фильмография актёров</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Поиск фильмографии актёров</h1>
+<label for="search-input">Введите имя актёра:</label>
+<input type="text" id="search-input" onkeyup="searchActors(event)" autocomplete="off">
+<br/><br/>
+<div id="results-container"></div>
+
+<!-- Подключаем скрипты -->
+<script src="data.js"></script>
+<script src="scripts.js"></script>
+</body>
+</html>
